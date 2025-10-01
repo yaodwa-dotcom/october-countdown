@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Countdown to End of October </title>
+  <style>
+    body {
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      text-align: center;
+      background: #000;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .countdown {
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.2em;
+      margin-bottom: 30px;
+      font-weight: 300;
+      color: #aaa;
+      letter-spacing: 2px;
+    }
+    #timer {
+      font-size: 5em; /* BIG like Apple Watch */
+      font-weight: 600;
+      letter-spacing: 5px;
+      color: #0f0; /* neon green glow */
+      text-shadow: 0 0 10px #0f0, 0 0 20px #0f0, 0 0 30px #0f0;
+    }
+    #extra {
+      margin-top: 25px;
+      font-size: 1.5em;
+      color: #999;
+      font-weight: 300;
+    }
+  </style>
+</head>
+<body>
+  <div class="countdown">
+    <h1>⏳ Countdown to October 31 (US Eastern Time)</h1>
+    <div id="timer">Loading...</div>
+    <div id="extra">🎃 CA: 4hF1KDBDQAXLxiowVZPx7gz7o6wRJYnY7EwBuxCEpump</div>
+  </div>
+
+  <script>
+    function updateCountdown() {
+      // End of October in US Eastern Time (New York)
+      const endDate = new Date("October 31, " + new Date().getFullYear() + " 23:59:59 GMT-0400"); 
+      const now = new Date().getTime();
+      const diff = endDate.getTime() - now;
+
+      if (diff <= 0) {
+        document.getElementById("timer").innerHTML = "🎉 00:00:00";
+        document.getElementById("extra").innerHTML = "October has ended in the US!";
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      // Display in big digital-clock style
+      document.getElementById("timer").innerHTML =
+        `${days}d ${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
